@@ -33,7 +33,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 600px; /* Limit width for larger screens */
+            max-width: 640px; /* Limit width for larger screens */
             margin-bottom: 20px;
         }
 
@@ -42,15 +42,17 @@
             gap: 2px;
             border: 2px solid #343a40;
             margin-bottom: 20px;
+            width: 100%; /* 确保棋盘宽度占满容器 */
+            aspect-ratio: 1; /* 保持正方形 */
         }
 
         .cell {
-            width: 30px;
-            height: 30px;
+            /* 移除固定尺寸 */
+            width: 100%;
+            height: 100%;
             border-radius: 3px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            /* Center content within cells (for hexagon/triangle) */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -151,12 +153,12 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="grid-shape" class="col-sm-4 col-form-label">Board Shape:</label>
+                <label for="grid-shape" class="col-sm-4 col-form-label">棋盘形状:</label>
                 <div class="col-sm-8">
                     <select class="form-select" id="grid-shape">
-                        <option value="square" selected>Square</option>
-                        <option value="hexagon">Hexagon</option>
-                        <option value="triangle">Triangle</option>
+                        <option value="square" selected>正方形</option>
+                        <option value="hexagon">六边形</option>
+                        <option value="triangle">三角形</option>
                     </select>
                 </div>
             </div>
@@ -164,20 +166,20 @@
             <div class="mb-3">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="obstacles">
-                    <label class="form-check-label" for="obstacles">Obstacles</label>
+                    <label class="form-check-label" for="obstacles">障碍物</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="special-cells">
-                    <label class="form-check-label" for="special-cells">Special Cells</label>
+                    <label class="form-check-label" for="special-cells">特殊格子</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="infinite-moves">
-                    <label class="form-check-label" for="infinite-moves">Infinite Moves</label>
+                    <label class="form-check-label" for="infinite-moves">无限步数</label>
                 </div>
             </div>
 
             <div class="d-grid">
-                <button type="button" class="btn btn-primary" id="new-game-btn">New Game</button>
+                <button type="button" class="btn btn-primary" id="new-game-btn">新游戏</button>
             </div>
         </div>
     </div>
@@ -193,58 +195,59 @@
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="helpModalLabel">How to Play Flood-It</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="helpModalLabel">如何玩洪水游戏</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
+
                 <div class="modal-body">
-                     <div class="rules-section">
-                        <h3>Game Objective</h3>
-                        <p>Fill the entire board with a single color in as few moves as possible.</p>
+                    <div class="rules-section">
+                        <h3>游戏目标</h3>
+                        <p>用尽可能少的步数将整个棋盘填充为单一颜色。</p>
                     </div>
 
-                    <div class="rules-section">
-                        <h3>玩法介绍/h3>
-                        <ul>
-                            <li>You start from the top-left cell of the board.</li>
-                            <li>Click on any cell to change the color of your flooded area to that color.</li>
-                            <li>When you change color, all adjacent cells of the same color will join your flooded area.</li>
-                            <li>Continue making moves until the entire board is a single color.</li>
-                            <li>Try to complete the game within the move limit shown at the top.</li>
-                            <li>Invalid moves (selecting the current flood color) don't count against your move limit.</li>
-                        </ul>
-                    </div>
+                        <div class="rules-section">
+                            <h3>玩法介绍</h3>
+                            <ul>
+                                <li>游戏从棋盘的左上角格子开始。</li>
+                                <li>点击任意格子，将当前洪水区域的颜色更改为该格子的颜色。</li>
+                                <li>当你改变颜色时，所有相邻的同色格子都会加入洪水区域。</li>
+                                <li>继续操作，直到整个棋盘变为单一颜色。</li>
+                                <li>尝试在顶部显示的步数限制内完成游戏。</li>
+                                <li>无效操作（选择当前洪水颜色）不会计入步数限制。</li>
+                            </ul>
+                        </div>
 
-                    <div class="rules-section">
-                        <h3>游戏选项</h3>
-                        <ul>
-                            <li><strong>Number of Colors:</strong> Choose how many different colors appear on the board.</li>
-                            <li><strong>Grid Size:</strong> Select the dimensions of the game board.</li>
-                            <li><strong>Board Shape:</strong> Change the overall shape of the board and its cells:
-                                <ul>
-                                    <li>Square: Traditional square grid</li>
-                                    <li>Hexagon: Hexagonal cells arranged in a honeycomb pattern</li>
-                                    <li>Triangle: Triangular cells arranged in a grid</li>
-                                </ul>
-                            </li>
-                            <li><strong>Obstacles:</strong> Add black cells that cannot be flooded and must be worked around.</li>
-                            <li><strong>Special Cells:</strong> Add star-marked cells with special properties.</li>
-                            <li><strong>Infinite Moves:</strong> Toggle to play without a move limit for a more relaxed game.</li>
-                        </ul>
-                    </div>
+                        <div class="rules-section">
+                            <h3>游戏选项</h3>
+                            <ul>
+                                <li><strong>颜色数量:</strong> 选择棋盘上出现的不同颜色数量。</li>
+                                <li><strong>棋盘大小:</strong> 选择棋盘的尺寸。</li>
+                                <li><strong>棋盘形状:</strong> 改变棋盘及其格子的整体形状:
+                                    <ul>
+                                        <li>正方形: 传统的方形网格</li>
+                                        <li>六边形: 蜂窝状排列的六边形格子</li>
+                                        <li>三角形: 网格排列的三角形格子</li>
+                                    </ul>
+                                </li>
+                                <li><strong>障碍物:</strong> 添加无法被洪水淹没的黑色格子，需要绕过它们。</li>
+                                <li><strong>特殊格子:</strong> 添加带有特殊属性的星标格子。</li>
+                                <li><strong>无限步数:</strong> 开启后可以不受步数限制，进行更轻松的游戏。</li>
+                            </ul>
+                        </div>
 
-                    <div class="rules-section">
-                        <h3>Strategy Tips</h3>
-                        <ul>
-                            <li>Look for colors that will connect large sections of the board.</li>
-                            <li>Try to plan several moves ahead.</li>
-                            <li>Sometimes it's better to make a move that doesn't immediately capture many cells but sets up a better position later.</li>
-                            <li>With obstacles, you may need to flood around them to reach isolated areas.</li>
-                        </ul>
-                    </div>
+                        <div class="rules-section">
+                            <h3>策略提示</h3>
+                            <ul>
+                                <li>寻找能够连接棋盘大部分区域的颜色。</li>
+                                <li>尝试提前规划几步。</li>
+                                <li>有时候，选择不会立即占领很多格子的颜色，但可以为后续创造更好的局面。</li>
+                                <li>在有障碍物的情况下，你可能需要绕过它们来到达孤立的区域。</li>
+                            </ul>
+                        </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>
@@ -255,14 +258,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="winModalLabel">Congratulations!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="winModalLabel">恭喜！</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
                 <div class="modal-body">
-                    <p>You've completed the game in <span id="final-moves">0</span> moves!</p>
+                    <p>你已用 <span id="final-moves">0</span> 步完成游戏！</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="new-game-modal-btn">New Game</button>
+                    <button type="button" class="btn btn-primary" id="new-game-modal-btn">新游戏</button>
                 </div>
             </div>
         </div>
@@ -273,14 +276,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="loseModalLabel">Game Over</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="loseModalLabel">游戏结束</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
                 <div class="modal-body">
-                    <p>You've run out of moves!</p>
+                    <p>你的步数已用完！</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="try-again-btn">Try Again</button>
+                    <button type="button" class="btn btn-primary" id="try-again-btn">再试一次</button>
                 </div>
             </div>
         </div>
@@ -360,10 +363,16 @@
         }
 
         // Create the game board
+        // Create the game board
         function createBoard() {
           gameState.board = [];
           gameBoard.innerHTML = '';
-          gameBoard.style.gridTemplateColumns = `repeat(${gameState.size}, 30px)`;
+          
+          // 动态计算格子尺寸
+          const boardSize = Math.min(600, window.innerWidth * 0.8); // 限制最大尺寸
+          gameBoard.style.width = `${boardSize}px`;
+          
+          gameBoard.style.gridTemplateColumns = `repeat(${gameState.size}, 1fr)`;
           gameState.maxMoves = Math.floor(gameState.size * 1.5 + gameState.colors);
           maxMovesDisplay.textContent = gameState.maxMoves;
 
@@ -474,18 +483,18 @@
 
             if (targetColor === null) {
                 //If first cell is obstacle
-                outerLoop:
-                for (let r = 0; r < gameState.size; r++) {
-                    for (let c = 0; c < gameState.size; c++) {
-                        if (!gameState.board[r][c].isObstacle) {
-                            targetColor = gameState.board[r][c].color;
-                            break outerLoop;
-                        }
+            outerLoop:
+            for (let r = 0; r < gameState.size; r++) {
+                for (let c = 0; c < gameState.size; c++) {
+                    if (!gameState.board[r][c].isObstacle) {
+                        targetColor = gameState.board[r][c].color;
+                        break outerLoop;
                     }
                 }
             }
+            }
             if (targetColor === null) return;
-
+        
             for (let row = 0; row < gameState.size; row++) {
                 for (let col = 0; col < gameState.size; col++) {
                     const cell = gameState.board[row][col];
