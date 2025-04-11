@@ -40,8 +40,15 @@
         .game-board {
             display: grid;
             gap: 2px;
-            border: 2px solid #343a40;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
             margin-bottom: 20px;
+            width: 100%; /* 确保棋盘宽度占满容器 */
+            aspect-ratio: 1; /* 保持正方形 */
+            background-color: #fff; /* 添加背景色使阴影更明显 */
+            border-radius: 8px; /* 添加圆角使阴影效果更好 */
+            border: 2px solid #c9d5e2;
+            margin-bottom: 20px;
+            overflow: hidden;
             width: 100%; /* 确保棋盘宽度占满容器 */
             aspect-ratio: 1; /* 保持正方形 */
         }
@@ -152,7 +159,7 @@
                     </select>
                 </div>
             </div>
-            <div class="mb-3 row">
+            <!-- <div class="mb-3 row">
                 <label for="grid-shape" class="col-sm-4 col-form-label">棋盘形状:</label>
                 <div class="col-sm-8">
                     <select class="form-select" id="grid-shape">
@@ -161,7 +168,7 @@
                         <option value="triangle">三角形</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
 
             <div class="mb-3">
                 <div class="form-check form-check-inline">
