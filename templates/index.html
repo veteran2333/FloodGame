@@ -16,24 +16,36 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #f8f9fa; /* Light gray background */
+            background-image: url('img/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             padding: 20px;
             min-height: 100vh; /* Ensure content fills the viewport */
         }
 
         h1 {
-            color: #343a40; /* Dark gray heading */
+            color: white;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 2.5rem;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
         }
 
         .game-container {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 640px; /* Limit width for larger screens */
             margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .game-board {
@@ -339,14 +351,14 @@
             },
             // Mapping between colors and image files
             colorImages: {
-                '#FF5252': 'img/image1.png', // Red
-                '#4CAF50': 'img/image2.png', // Green
-                '#2196F3': 'img/image3.png', // Blue
-                '#FFEB3B': 'img/image4.png', // Yellow
-                '#9C27B0': 'img/image5.png', // Purple
-                '#FF9800': 'img/image6.png', // Orange
-                '#00BCD4': 'img/image7.png', // Cyan
-                '#795548': 'img/image8.png'  // Brown
+                '#FF5252': 'img/1.png', // Red
+                '#4CAF50': 'img/2.png', // Green
+                '#2196F3': 'img/3.png', // Blue
+                '#FFEB3B': 'img/4.png', // Yellow
+                '#9C27B0': 'img/5.png', // Purple
+                '#FF9800': 'img/6.png', // Orange
+                '#00BCD4': 'img/7.png', // Cyan
+                '#795548': 'img/8.png'  // Brown
             }
         };
 
@@ -432,7 +444,7 @@
                   // Use image instead of color
                   if (!isObstacle) {
                       cell.style.backgroundImage = `url(${gameState.colorImages[color]})`;
-                      cell.textContent = gameState.colorNumbers[color]; // Keep the number
+                    //   cell.textContent = gameState.colorNumbers[color]; // Keep the number
                   } else {
                       cell.style.backgroundColor = color;
                   }
@@ -519,7 +531,7 @@
                     // Update with image instead of color
                     if (!cellData.isObstacle) {
                         cell.style.backgroundImage = `url(${gameState.colorImages[cellData.color]})`;
-                        cell.textContent = gameState.colorNumbers[cellData.color]; // Keep the number
+                        // cell.textContent = gameState.colorNumbers[cellData.color]; // Keep the number
                     } else {
                         cell.style.backgroundColor = cellData.color;
                         cell.style.backgroundImage = 'none';
