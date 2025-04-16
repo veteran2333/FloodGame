@@ -62,6 +62,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .cell.obstacle {
@@ -318,7 +325,29 @@
                 '#FF9800', // Orange
                 '#00BCD4', // Cyan
                 '#795548'  // Brown
-            ]
+            ],
+            // Mapping between colors and numbers (1-8)
+            colorNumbers: {
+                '#FF5252': '1', // Red
+                '#4CAF50': '2', // Green
+                '#2196F3': '3', // Blue
+                '#FFEB3B': '4', // Yellow
+                '#9C27B0': '5', // Purple
+                '#FF9800': '6', // Orange
+                '#00BCD4': '7', // Cyan
+                '#795548': '8'  // Brown
+            },
+            // Mapping between colors and image files
+            colorImages: {
+                '#FF5252': 'img/image1.png', // Red
+                '#4CAF50': 'img/image2.png', // Green
+                '#2196F3': 'img/image3.png', // Blue
+                '#FFEB3B': 'img/image4.png', // Yellow
+                '#9C27B0': 'img/image5.png', // Purple
+                '#FF9800': 'img/image6.png', // Orange
+                '#00BCD4': 'img/image7.png', // Cyan
+                '#795548': 'img/image8.png'  // Brown
+            }
         };
 
         // --- DOM Elements ---
@@ -371,11 +400,11 @@
         function createBoard() {
           gameState.board = [];
           gameBoard.innerHTML = '';
-          
+
           // 动态计算格子尺寸
           const boardSize = Math.min(600, window.innerWidth * 0.8); // 限制最大尺寸
           gameBoard.style.width = `${boardSize}px`;
-          
+
           gameBoard.style.gridTemplateColumns = `repeat(${gameState.size}, 1fr)`;
           gameState.maxMoves = Math.floor(gameState.size * 1.5 + gameState.colors);
           maxMovesDisplay.textContent = gameState.maxMoves;
@@ -399,7 +428,15 @@
                   }
                   const colorIndex = Math.floor(Math.random() * gameState.colors);
                   const color = isObstacle ? '#000000' : gameState.colorPalette[colorIndex];
-                  cell.style.backgroundColor = color;
+
+                  // Use image instead of color
+                  if (!isObstacle) {
+                      cell.style.backgroundImage = `url(${gameState.colorImages[color]})`;
+                      cell.textContent = gameState.colorNumbers[color]; // Keep the number
+                  } else {
+                      cell.style.backgroundColor = color;
+                  }
+
                   gameBoard.appendChild(cell);
                   gameState.board[row][col] = { color, isObstacle, isSpecial };
                   cell.addEventListener('click', handleCellClick);
@@ -476,7 +513,18 @@
             cells.forEach(cell => {
                 const row = parseInt(cell.dataset.row);
                 const col = parseInt(cell.dataset.col);
-                setTimeout(() => { cell.style.backgroundColor = gameState.board[row][col].color; }, 50 * (row + col) / 2);
+                const cellData = gameState.board[row][col];
+
+                setTimeout(() => {
+                    // Update with image instead of color
+                    if (!cellData.isObstacle) {
+                        cell.style.backgroundImage = `url(${gameState.colorImages[cellData.color]})`;
+                        cell.textContent = gameState.colorNumbers[cellData.color]; // Keep the number
+                    } else {
+                        cell.style.backgroundColor = cellData.color;
+                        cell.style.backgroundImage = 'none';
+                    }
+                }, 50 * (row + col) / 2);
             });
         }
 
@@ -498,7 +546,7 @@
             }
             }
             if (targetColor === null) return;
-        
+
             for (let row = 0; row < gameState.size; row++) {
                 for (let col = 0; col < gameState.size; col++) {
                     const cell = gameState.board[row][col];
