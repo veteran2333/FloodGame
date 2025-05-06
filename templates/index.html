@@ -226,50 +226,50 @@
 
                 <div class="modal-body">
                     <div class="rules-section">
-                        <h3>游戏目标</h3>
+                        <h3>游戏目标 | Game Objective</h3>
                         <p>用尽可能少的步数将整个棋盘填充为单一颜色。</p>
+                        <p><em>Fill the entire board with a single color in as few moves as possible.</em></p>
                     </div>
 
-                        <div class="rules-section">
-                            <h3>玩法介绍</h3>
-                            <ul>
-                                <li>游戏从棋盘的左上角格子开始。</li>
-                                <li>点击任意格子，将当前洪水区域的颜色更改为该格子的颜色。</li>
-                                <li>当你改变颜色时，所有相邻的同色格子都会加入洪水区域。</li>
-                                <li>继续操作，直到整个棋盘变为单一颜色。</li>
-                                <li>尝试在顶部显示的步数限制内完成游戏。</li>
-                                <li>无效操作（选择当前洪水颜色）不会计入步数限制。</li>
-                            </ul>
-                        </div>
+                    <div class="rules-section">
+                        <h3>玩法介绍 | How to Play</h3>
+                        <ul>
+                            <li>游戏从棋盘的左上角格子开始。<br><em>The game starts with the top-left corner of the board already flooded.</em></li>
+                            <li>点击任意格子，将当前洪水区域的颜色更改为该格子的颜色。<br><em>Click any cell to change the color of the current flooded area to the color of that cell.</em></li>
+                            <li>当你改变颜色时，所有相邻的同色格子都会加入洪水区域。<br><em>When you change the color, all adjacent same-color cells (horizontally, vertically, or diagonally, depending on the board shape) will join the flooded area.</em></li>
+                            <li>继续操作，直到整个棋盘变为单一颜色。<br><em>Keep playing until the entire board is a single color.</em></li>
+                            <li>尝试在顶部显示的步数限制内完成游戏。<br><em>Aim to complete the game within the move limit shown at the top.</em></li>
+                            <li>无效操作（选择当前洪水颜色）不会计入步数限制。<br><em>Invalid moves (selecting the current flooded color) do not count toward the move limit.</em></li>
+                        </ul>
+                    </div>
 
-                        <div class="rules-section">
-                            <h3>游戏选项</h3>
-                            <ul>
-                                <li><strong>颜色数量:</strong> 选择棋盘上出现的不同颜色数量。</li>
-                                <li><strong>棋盘大小:</strong> 选择棋盘的尺寸。</li>
-                                <li><strong>棋盘形状:</strong> 改变棋盘及其格子的整体形状:
-                                    <ul>
-                                        <li>正方形: 传统的方形网格</li>
-                                        <li>六边形: 蜂窝状排列的六边形格子</li>
-                                        <li>三角形: 网格排列的三角形格子</li>
-                                    </ul>
-                                </li>
-                                <li><strong>障碍物:</strong> 添加无法被洪水淹没的黑色格子，需要绕过它们。</li>
-                                <li><strong>特殊格子:</strong> 添加带有特殊属性的星标格子。</li>
-                                <li><strong>无限步数:</strong> 开启后可以不受步数限制，进行更轻松的游戏。</li>
-                            </ul>
-                        </div>
+                    <div class="rules-section">
+                        <h3>游戏选项 | Game Options</h3>
+                        <ul>
+                            <li><strong>颜色数量 | Number of Colors:</strong> 选择棋盘上出现的不同颜色数量。<br><em>Choose how many different colors appear on the board.</em></li>
+                            <li><strong>棋盘大小 | Board Size:</strong> 选择棋盘的尺寸。<br><em>Select the dimensions of the board (e.g., 5x5, 8x8).</em></li>
+                            <li><strong>棋盘形状 | Board Shape:</strong> 改变棋盘及其格子的整体形状:<br><em>Alter the overall shape of the board and its cells:</em>
+                                <ul>
+                                    <li>正方形 | Square: 传统的方形网格<br><em>Traditional grid of square cells.</em></li>
+                                    <li>六边形 | Hexagonal: 蜂窝状排列的六边形格子<br><em>Honeycomb-patterned hexagonal cells.</em></li>
+                                    <li>三角形 | Triangular: 网格排列的三角形格子<br><em>Grid of triangular cells arranged in a tessellation.</em></li>
+                                </ul>
+                            </li>
+                            <li><strong>障碍物 | Obstacles:</strong> 添加无法被洪水淹没的黑色格子，需要绕过它们。<br><em>Add black, un-floodable cells that must be bypassed.</em></li>
+                            <li><strong>特殊格子 | Special Tiles:</strong> 添加带有特殊属性的星标格子。<br><em>Include star-marked tiles with unique properties (e.g., expanding the flood in extra directions).</em></li>
+                            <li><strong>无限步数 | Infinite Moves:</strong> 开启后可以不受步数限制，进行更轻松的游戏。<br><em>Disable the move limit for a more relaxed gameplay experience.</em></li>
+                        </ul>
+                    </div>
 
-                        <div class="rules-section">
-                            <h3>策略提示</h3>
-                            <ul>
-                                <li>寻找能够连接棋盘大部分区域的颜色。</li>
-                                <li>尝试提前规划几步。</li>
-                                <li>有时候，选择不会立即占领很多格子的颜色，但可以为后续创造更好的局面。</li>
-                                <li>在有障碍物的情况下，你可能需要绕过它们来到达孤立的区域。</li>
-                            </ul>
-                        </div>
-
+                    <div class="rules-section">
+                        <h3>策略提示 | Strategy Tips</h3>
+                        <ul>
+                            <li>寻找能够连接棋盘大部分区域的颜色。<br><em>Look for connecting colors: Prioritize colors that can link large portions of the board.</em></li>
+                            <li>尝试提前规划几步。<br><em>Plan ahead: Think a few moves in advance to chain color changes efficiently.</em></li>
+                            <li>有时候，选择不会立即占领很多格子的颜色，但可以为后续创造更好的局面。<br><em>Sacrifice short-term gains: Sometimes choosing a color that doesn't immediately flood many cells can set up better opportunities for future moves.</em></li>
+                            <li>在有障碍物的情况下，你可能需要绕过它们来到达孤立的区域。<br><em>Navigate obstacles: When obstacles are present, plot paths to reach isolated areas by flooding around or through strategic gaps.</em></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
